@@ -314,13 +314,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18602714, y: -0, z: -0, w: 0.98254466}
-  m_LocalPosition: {x: 0, y: 2.04, z: -3.21}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.747, z: 0.089}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 678170998}
-  m_LocalEulerAnglesHint: {x: 21.442, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +378,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 3000
-  CRotate: 0
+  CRotate: 1
+  maxAngle: 45
+  minAngle: -45
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +866,7 @@ GameObject:
   - component: {fileID: 678170997}
   - component: {fileID: 678170996}
   - component: {fileID: 678170994}
+  - component: {fileID: 678171004}
   - component: {fileID: 678170999}
   - component: {fileID: 678171002}
   - component: {fileID: 678171003}
@@ -990,7 +993,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 3000
-  CRotate: 1
+  CRotate: 0
+  maxAngle: 45
+  minAngle: 15
 --- !u!143 &678171003
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1017,6 +1022,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &678171004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678170993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6a71cbc6aa0aa4299c8cb252aea657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  currentHP: 0
 --- !u!1 &707745919
 GameObject:
   m_ObjectHideFlags: 0
