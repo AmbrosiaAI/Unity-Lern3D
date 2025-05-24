@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class character : MonoBehaviour
 {
     public float maxHP = 100;
@@ -22,6 +23,6 @@ public class character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDead) getDamage(10*Time.deltaTime);
+
     }
 }
