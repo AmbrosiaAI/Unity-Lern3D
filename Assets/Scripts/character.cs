@@ -8,6 +8,7 @@ public class character : MonoBehaviour
     public float maxHP = 100;
     public float currentHP;
     public GameObject GameOverPanel;
+    public GameObject Camera;
     private bool isDead = false;
     // Start is called before the first frame update
 
@@ -27,8 +28,17 @@ public class character : MonoBehaviour
 
     private IEnumerator Death()
     {
-        this.gameObject.transform.Rotate(-75,-38,0);
+        if (GetComponent<WanderingAI>() is WanderingAI ai)
+            ai.enabled = false;
+
+        this.gameObject.transform.Translate(0, -0.8f, 0);
+        this.gameObject.transform.Rotate(-70, -38, 0);
         yield return new WaitForSeconds(1.5f);
+        if (Camera != null) {
+            Camera.transform.parent = null;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+                }
         Destroy(this.gameObject);
     }
     void Start()
