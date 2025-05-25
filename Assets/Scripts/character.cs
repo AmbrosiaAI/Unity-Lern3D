@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(CharacterController))]
 public class character : MonoBehaviour
 {
     public float maxHP = 100;
@@ -12,15 +11,25 @@ public class character : MonoBehaviour
     private bool isDead = false;
     // Start is called before the first frame update
 
-    void getDamage(float damage)
+    public void getDamage(float damage)
     {
         currentHP -= damage;
         if (currentHP <= 0) 
         { 
-            Debug.Log($"{this} is dead."); 
-            GameOverPanel.SetActive(true);
-            Destroy(gameObject); 
+            Debug.Log($"{this} is dead.");
+            if (GameOverPanel != null)
+            {
+                GameOverPanel.SetActive(true);
+            }
+            StartCoroutine(Death());
         }
+    }
+
+    private IEnumerator Death()
+    {
+        this.gameObject.transform.Rotate(-75,-38,0);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(this.gameObject);
     }
     void Start()
     {
@@ -30,6 +39,6 @@ public class character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDead) { getDamage(10 * Time.deltaTime); }
+
     }
 }

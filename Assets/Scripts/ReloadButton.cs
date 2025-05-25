@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ReloadButton : MonoBehaviour
 {
 
-    public void ReloadGame()
+    private void ReloadGame()
     {
+        Debug.Log("reloading...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        Button reload = GetComponent<Button>();
+        reload.onClick.AddListener(ReloadGame);
     }
 }
