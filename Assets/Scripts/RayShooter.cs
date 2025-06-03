@@ -6,10 +6,13 @@ public class RayShooter : MonoBehaviour
 {
     private Camera _camera;
     public float reloadTime = 1f;
+    public Material material;
     private bool onReload = false;
     private IEnumerator SphereIndicator(Vector3 pos)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        sphere.GetComponent<Renderer>().material = material;
+        sphere.GetComponent<Collider>().enabled = false;
         sphere.transform.position = pos;
         for (float i = 3; i >= 0; i--)
         {

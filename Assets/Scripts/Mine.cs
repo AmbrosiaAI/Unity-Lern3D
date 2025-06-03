@@ -11,7 +11,7 @@ public class Mine : MonoBehaviour
             Character character = collision.gameObject.GetComponent<Character>();
             if (character != null)
             {
-                character.getDamage(character.currentHP);
+                character.getDamage(character.currentHP/2);
                 Destroy(this.gameObject);
             }
         }

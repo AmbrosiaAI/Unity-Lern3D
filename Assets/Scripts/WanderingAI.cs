@@ -6,7 +6,7 @@ using UnityEngine.TextCore.Text;
 public class WanderingAI : MonoBehaviour
 {
     public float speed = 3.0f;
-    public float obstacleRange = 2.0f;
+    public float obstacleRange = 1.0f;
     [SerializeField] private GameObject fireballPrefab;
     private GameObject _fireball;
     void Update()
@@ -15,13 +15,10 @@ public class WanderingAI : MonoBehaviour
         
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
-        if (Physics.SphereCast(ray, 1.75f, out hit))
+        if (Physics.SphereCast(ray, 1f, out hit))
         {
-            PlayerMovable playerMove = hit.collider.GetComponent<PlayerMovable>();
-            Character character = hit.collider.GetComponent<Character>();
-
-
-            if (character != null)
+            PlayerMovable player = hit.collider.GetComponent<PlayerMovable>();
+            if (player != null)
             {
                 // Логика создания и направления Fireball
                 if (_fireball == null)
@@ -31,7 +28,6 @@ public class WanderingAI : MonoBehaviour
                     _fireball.transform.rotation = transform.rotation;
                 }
             }
-            else
             if (hit.distance < obstacleRange)
             {
                 float angle = UnityEngine.Random.Range(-110, 110);

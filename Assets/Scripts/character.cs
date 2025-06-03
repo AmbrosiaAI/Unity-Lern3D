@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     public float maxHP = 100;
     public float currentHP;
-    public GameObject GameOverPanel;
+    public Canvas canvas;
+    private GameObject GameOverPanel;
+    private TMP_Text HPBar;
     public GameObject Camera;
     private bool isDead = false;
-    // Start is called before the first frame update
-
+    
     public void getDamage(float damage)
     {
         currentHP -= damage;
@@ -28,11 +30,13 @@ public class Character : MonoBehaviour
     private IEnumerator Death()
     {
         if (GetComponent<WanderingAI>() is WanderingAI ai)
+        {
             ai.enabled = false;
 
-        this.gameObject.transform.Translate(0, -0.8f, 0);
-        this.gameObject.transform.Rotate(-70, -38, 0);
-        yield return new WaitForSeconds(1.5f);
+            this.gameObject.transform.Translate(0, -0.8f, 0);
+            this.gameObject.transform.Rotate(-70, -38, 0);
+            yield return new WaitForSeconds(1.5f);
+        }
         if (Camera != null)
         {
             Camera.GetComponent<RayShooter>().enabled = false;
@@ -46,11 +50,20 @@ public class Character : MonoBehaviour
     void Start()
     {
         currentHP = maxHP;
+        if (canvas != null)
+        {
+            GameOverPanel = canvas.transform.Find("GameOverPanel").gameObject;
+            HPBar = canvas.transform.Find("HPBar").GetComponent<TextMeshProUGUI>();
+        }
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        if (canvas != null)
+        {
+            HPBar.text = $"{currentHP}/100";
+        }
+        if (currentHP > maxHP) currentHP = maxHP;
     }
 }
