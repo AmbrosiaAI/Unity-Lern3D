@@ -5,7 +5,8 @@ using UnityEngine;
 public class RayShooter : MonoBehaviour
 {
     private Camera _camera;
-
+    public float reloadTime = 1f;
+    private bool onReload = false;
     private IEnumerator SphereIndicator(Vector3 pos)
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -19,6 +20,13 @@ public class RayShooter : MonoBehaviour
         yield return null;
     }
 
+    private IEnumerator relaod()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        onReload = false;
+
+    }
+
     private void Start()
     {
         _camera = GetComponent<Camera>();
@@ -30,20 +38,26 @@ public class RayShooter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 point = new Vector3(
-                _camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
-            Ray ray = _camera.ScreenPointToRay(point);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (!onReload)
             {
+                onReload = true;
+                StartCoroutine(relaod());
 
-                if (hit.collider != null)
+                Vector3 point = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2, 0);
+                Ray ray = _camera.ScreenPointToRay(point);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
                 {
-                    Character enemy = hit.collider?.GetComponent<Character>();
-                    if (enemy != null)
+                    
+                    if (hit.collider != null)
                     {
-                        enemy.getDamage(50);
-                    } else { StartCoroutine(SphereIndicator(hit.point)); }
+                        Character enemy = hit.collider?.GetComponent<Character>();
+                        if (enemy != null)
+                        {
+                            enemy.getDamage(50);
+                        }
+                        else { StartCoroutine(SphereIndicator(hit.point)); }
+                    }
                 }
             }
         }
