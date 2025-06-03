@@ -39,7 +39,7 @@ public class RayShooter : MonoBehaviour
 
                 if (hit.collider != null)
                 {
-                    character enemy = hit.collider?.GetComponent<character>();
+                    Character enemy = hit.collider?.GetComponent<Character>();
                     if (enemy != null)
                     {
                         enemy.getDamage(50);

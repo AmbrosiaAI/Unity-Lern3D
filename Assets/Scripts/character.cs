@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class character : MonoBehaviour
+public class Character : MonoBehaviour
 {
     public float maxHP = 100;
     public float currentHP;
@@ -15,8 +14,8 @@ public class character : MonoBehaviour
     public void getDamage(float damage)
     {
         currentHP -= damage;
-        if (currentHP <= 0) 
-        { 
+        if (currentHP <= 0)
+        {
             Debug.Log($"{this} is dead.");
             if (GameOverPanel != null)
             {
@@ -34,11 +33,14 @@ public class character : MonoBehaviour
         this.gameObject.transform.Translate(0, -0.8f, 0);
         this.gameObject.transform.Rotate(-70, -38, 0);
         yield return new WaitForSeconds(1.5f);
-        if (Camera != null) {
+        if (Camera != null)
+        {
+            Camera.GetComponent<RayShooter>().enabled = false;
+            Camera.GetComponent<PlayerRotation>().enabled = false;
             Camera.transform.parent = null;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-                }
+        }
         Destroy(this.gameObject);
     }
     void Start()

@@ -18,4 +18,12 @@ public class ReloadButton : MonoBehaviour
         Button reload = GetComponent<Button>();
         reload.onClick.AddListener(ReloadGame);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ReloadGame();
+        }
+    }
 }
