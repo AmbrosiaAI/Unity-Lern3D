@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RayShooter : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+
     private Camera _camera;
     public float reloadTime = 1f;
     public Material material;
@@ -43,6 +45,7 @@ public class RayShooter : MonoBehaviour
         {
             if (!onReload)
             {
+                Messenger.Broadcast(GameEvents.PlayerAttacking);
                 onReload = true;
                 StartCoroutine(relaod());
 

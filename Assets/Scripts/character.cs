@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
     {
         if (GetComponent<WanderingAI>() is WanderingAI ai)
         {
+            Messenger.Broadcast(GameEvents.EnemyKilled);
             ai.enabled = false;
 
             this.gameObject.transform.Translate(0, -0.8f, 0);

@@ -537,6 +537,8 @@ GameObject:
   - component: {fileID: 3999808265903330055}
   - component: {fileID: 2029879423637411340}
   - component: {fileID: 1769884952322458113}
+  - component: {fileID: 7461688616596874497}
+  - component: {fileID: 1831742211680928277}
   m_Layer: 0
   m_Name: Add banner
   m_TagString: Untagged
@@ -635,3 +637,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7461688616596874497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610086496200675482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69efc4f10b9e8a64894d0a5b297305ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 5
+--- !u!136 &1831742211680928277
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610086496200675482}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.68529314
+  m_Height: 0.93132085
+  m_Direction: 2
+  m_Center: {x: -37.688545, y: -0.44421217, z: 0.024511077}

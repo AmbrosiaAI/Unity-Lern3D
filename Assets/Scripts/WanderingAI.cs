@@ -9,6 +9,8 @@ public class WanderingAI : MonoBehaviour
     public float obstacleRange = 1.0f;
     [SerializeField] private GameObject fireballPrefab;
     private GameObject _fireball;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip hitAudioClip;
     void Update()
     {
         transform.Translate(0, 0, speed * Time.deltaTime);
@@ -23,6 +25,7 @@ public class WanderingAI : MonoBehaviour
                 // Логика создания и направления Fireball
                 if (_fireball == null)
                 {
+                    this.GetComponent<AudioSource>().PlayOneShot(hitAudioClip);
                     _fireball = Instantiate(fireballPrefab);
                     _fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
                     _fireball.transform.rotation = transform.rotation;
